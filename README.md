@@ -23,4 +23,4 @@ Des outils de gestion de projet en ligne seront utilisés pour suivre l'avanceme
 
 Calendrier et budget :
 
-Le projet sera découpé en différentes étapes, chacune avec un objectif spécifique et une date de livraison prévue
+Le projet sera découpé en différentes étapes, chacune avec un objectif spécifique et une date de livraison prévue .
