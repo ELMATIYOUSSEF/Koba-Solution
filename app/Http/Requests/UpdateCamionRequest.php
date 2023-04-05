@@ -24,10 +24,11 @@ class UpdateCamionRequest extends FormRequest
     public function rules()
     {
         return [
+            'idDriver' => 'required|integer',
             'Camion_type'=>'required|string|max:30',
             'Camion_capacity'=>'required|integer',
             'Camion_location'=>'required|string|max:255',
-            'Camion_status'=>'required|string|in(available,unavailable)',
+            'Camion_status'=>'required|string|in:available,unavailable',
         ];
     }
 }

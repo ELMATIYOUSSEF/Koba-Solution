@@ -61,8 +61,19 @@
                                                     <td class="text-nowrap">{{$camion->Camion_type}}</td>
                                                     <td class="text-nowrap">{{$camion->Camion_capacity}}</td>
                                                     <td>{{$camion->Camion_location}}</td>
-                                                    <td class="text-center"> <button class="badge badge-pill bg-success inv-badge">{{$camion->Camion_status}}</button> </td>
-                                                    <td>
+                                                    <td class="text-center">
+                                                        <button class="btn"
+                                                            @if ($camion->Camion_status == 'available')
+                                                                style="background-color: green; color: white;"
+                                                            @elseif ($camion->Camion_status == 'unavailable')
+                                                                style="background-color: red; color: white;"
+                                                            @else
+                                                                style="background-color: gray; color: white;"
+                                                            @endif
+                                                        >
+                                                            {{ $camion->Camion_status }}
+                                                        </button>
+                                                    </td>                                                                                                        <td>
                                                         
                                                         <a href="javascript:void(0)" onclick="if(confirm('Are You sure to delete this camion?')){document.getElementById('camion{{$camion->id}}').submit();} else {return false}" class="">
                                                             <lord-icon
@@ -72,13 +83,11 @@
                                                                 style="width:40px;height:40px">
                                                             </lord-icon>
                                                         </a>
-                                                        {{-- <button type="button" class="btn btn-primary  float-right veiwbutton" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Add camion</button> --}}
-                                                        <a href="{{ route('camions.edit',[$camion ,])}}" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" class=""><lord-icon
-                                                                src="https://cdn.lordicon.com/hbigeisx.json"
-                                                                trigger="hover"
-                                                                colors="primary:#c79816"
-                                                                style="width:40px;height:40px">
-                                                            </lord-icon></a>
+
+                                                        <a data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" class="btn-open-modal" onclick="openModal({{ $camion->id }})">
+                                                            <lord-icon src="https://cdn.lordicon.com/hbigeisx.json" trigger="hover" colors="primary:#c79816" style="width:40px;height:40px"></lord-icon>
+                                                        </a>                                                        
+                                                        
                                                     </td>
                                                     <form method="POST" action="{{route('camions.destroy',[$camion])}}" id="camion{{$camion->id}}">
                                                         @csrf 
@@ -177,9 +186,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" id="form"  action="{{route('camions.store')}}">
-              @csrf 
-  
+          <form method="POST" id="form" action="{{route('camions.update',[$camion])}}">
+                {{ csrf_field() }}
+                @method('PUT')
+                <input type="hidden" name="idcamion">
               <div class="form-group">
                   <label for="exampleFormControlSelect1">Driver select :</label>
                   <select class="form-control" name="idDriver" id="exampleFormControlSelect1">

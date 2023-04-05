@@ -49,6 +49,13 @@ class CamionController extends Controller
             ->with('success', 'camion is submitted!');
     }
 
+    public function getCamionById($id)
+    {
+        $camion = Camion::findOrFail($id);
+
+        return response()->json($camion);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -69,6 +76,7 @@ class CamionController extends Controller
     public function edit(Camion $camion)
     {
         return view('camions.edit',['camion' => $camion]);
+        dd($camion);
     }
 
     /**
@@ -78,12 +86,14 @@ class CamionController extends Controller
      * @param  \App\Models\Camion  $camion
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCamionRequest $request, Camion $camion)
+    public function update(UpdateCamionRequest $request ,$id)
     {
+       
         $validated = $request->validated();
+        $camion = Camion::findOrFail($id);
         $camion->update($validated);
         return redirect()
-        ->route('camions.show', [$camion])
+        ->back()
         ->with('success', 'camion is updated!');
     }
 

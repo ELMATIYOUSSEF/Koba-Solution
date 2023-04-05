@@ -50,10 +50,10 @@ body{
       color: black;
     }
     
-    .active {
+    /* .active {
       border-bottom:solid 5px #5f9fd3;
       border-radius: 4px;
-    }
+    } */
     
     
     /* Forms */
@@ -84,16 +84,7 @@ body{
       resize: none;
     }
     
-    button {
-      background-color: #fa6908;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 18px 2px;
-    }
-    
+  
     .delete {
       background-color: #fa0808;
     }
@@ -127,23 +118,7 @@ body{
     .error-border {
       border: 2px solid red !important;
     }
-    
-    
-    /* Post card */
-    
-    .post-item {
-      box-shadow: 5px 10px 8px 0 rgba(0, 0, 0, 0.3);
-      width: 50%;
-      margin: 30px auto;
+    .active{
+      color: #33a43a;
     }
     
-    .post-content {
-      width: 100%;
-      padding: 10px 20px;
-    }
-    .username{
-      position: relative;
-      right: 30px;
-      top:15px;
-      
-    }
