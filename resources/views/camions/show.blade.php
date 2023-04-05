@@ -74,9 +74,9 @@
                                                     <td class="text-center">
                                                         <button class="btn"
                                                             @if ($camion->Camion_status == 'available')
-                                                                style="background-color: green; color: white;"
+                                                                style="background-color: rgb(110, 237, 110); color: white;"
                                                             @elseif ($camion->Camion_status == 'unavailable')
-                                                                style="background-color: red; color: white;"
+                                                                style="background-color: rgb(225, 111, 111); color: white;"
                                                             @else
                                                                 style="background-color: gray; color: white;"
                                                             @endif
@@ -109,21 +109,24 @@
                                     </tbody>
                                     
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {!! $camions->links() !!}
+                                </div>
                                
                             </div>
                            
                         </div>
                     </div>
-                  
                 </div>
+               
                 <div>
                     <div>
-                        <button class="btn" style="background-color: green; color: white;">
+                        <button class="btn" style="background-color: rgb(110, 237, 110); color: white;">
                     </button>
                     <h6>available</h6>
                     </div>
                     <div>
-                        <button class="btn" style="background-color: red; color: white;">
+                        <button class="btn" style="background-color: rgb(225, 111, 111); color: white;">
                     </button>
                     <h6>unavailable</h6>
                     </div>
