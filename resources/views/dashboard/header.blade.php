@@ -7,6 +7,7 @@
 	<title>Koba Dashboard </title>
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">

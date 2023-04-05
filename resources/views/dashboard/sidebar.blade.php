@@ -14,7 +14,6 @@
                 <li class="submenu"> <a href="#"><i class="fas fa-hand-holding"></i> <span> Camion </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{route('camions.index')}}"> All Camion </a></li>
-                        <li><a href=""> Add Camion </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-comments"></i> <span> FeedBack </span> <span class="menu-arrow"></span></a>

@@ -16,3 +16,21 @@ function openModal(camionId) {
         }
     });
 }
+
+// remove alert of success
+  function removeAlert() {
+    setTimeout(function() {
+      var errorElement = document.querySelector('.flash-error');
+      if (errorElement) {
+        errorElement.parentNode.removeChild(errorElement);
+      }
+      var successElement = document.querySelector('.flash-success');
+      if (successElement) {
+        successElement.parentNode.removeChild(successElement);
+      }
+    }, 5000);
+  }
+  
+  window.addEventListener('load', function() {
+    removeAlert();
+  });

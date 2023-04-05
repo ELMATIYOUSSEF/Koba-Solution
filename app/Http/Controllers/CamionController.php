@@ -86,10 +86,11 @@ class CamionController extends Controller
      * @param  \App\Models\Camion  $camion
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCamionRequest $request ,$id)
+    public function update(UpdateCamionRequest $request )
     {
        
         $validated = $request->validated();
+        $id = $validated['idcamion'];
         $camion = Camion::findOrFail($id);
         $camion->update($validated);
         return redirect()

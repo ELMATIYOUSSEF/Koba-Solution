@@ -24,6 +24,7 @@ class UpdateCamionRequest extends FormRequest
     public function rules()
     {
         return [
+            'idcamion'=> 'required|integer',
             'idDriver' => 'required|integer',
             'Camion_type'=>'required|string|max:30',
             'Camion_capacity'=>'required|integer',

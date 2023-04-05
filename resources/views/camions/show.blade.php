@@ -17,6 +17,16 @@
         <div class="col-md-12 d-flex">
             <div class="card card-table flex-fill">
                 <div class="card-header">
+                    @includeWhen($errors->any(),'../_errors')
+                    @if (session('success'))
+                    <div id="flash-success" class="flash-success">
+                        {{ session('success') }}
+                    </div>
+                        <script>
+                           removeAlert(); 
+                        </script>
+                @endif
+                
                     <h4 class="card-title float-left mt-2">All camions </h4>
                     <button type="button" class="btn btn-primary  float-right veiwbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add camion</button>
                 </div>
@@ -71,7 +81,7 @@
                                                                 style="background-color: gray; color: white;"
                                                             @endif
                                                         >
-                                                            {{ $camion->Camion_status }}
+                                                           
                                                         </button>
                                                     </td>                                                                                                        <td>
                                                         
@@ -99,9 +109,25 @@
                                     </tbody>
                                     
                                 </table>
+                               
                             </div>
+                           
                         </div>
                     </div>
+                  
+                </div>
+                <div>
+                    <div>
+                        <button class="btn" style="background-color: green; color: white;">
+                    </button>
+                    <h6>available</h6>
+                    </div>
+                    <div>
+                        <button class="btn" style="background-color: red; color: white;">
+                    </button>
+                    <h6>unavailable</h6>
+                    </div>
+
                 </div>
             </div>
      
@@ -123,35 +149,55 @@
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Driver select :</label>
-                <select class="form-control" name="idDriver" id="exampleFormControlSelect1">
+                <select class="form-control @error('idDriver') error-border @enderror" name="idDriver" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
                   <option value="1">Fifel Mouad</option>
                   <option value="2">Youssef Elmati</option>
                 </select>
+                @error('idDriver')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Camion Type :</label>
-                <select class="form-control" name="Camion_type" id="exampleFormControlSelect1">
+                <select class="form-control @error('Camion_type') error-border @enderror" name="Camion_type" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
                   <option value="Small">Small Truck</option>
                   <option value="Big">Big Truck</option>
                 </select>
+                @error('Camion_type')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
               </div>
 
               <div class="form-group">
                <label for="exampleFormControlSelect1">Camion capacity :</label> 
-                <select class="form-control" name="Camion_capacity" id="exampleFormControlSelect1">
+                <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
                   <option value="1">5</option>
                   <option value="2">10</option>
                 </select>
+                @error('Camion_capacity')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
               </div>
               
              
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Location :</label>
-            <input type="text" name="Camion_location" class="form-control" id="recipient-name">
+            <input type="text" name="Camion_location" class="form-control @error('Camion_location') error-border @enderror" id="recipient-name">
+            @error('Camion_location')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
           </div>
 
           <div class="form-check form-check-inline">
@@ -192,35 +238,55 @@
                 <input type="hidden" name="idcamion">
               <div class="form-group">
                   <label for="exampleFormControlSelect1">Driver select :</label>
-                  <select class="form-control" name="idDriver" id="exampleFormControlSelect1">
+                  <select class="form-control @error('idDriver') error-border @enderror" name="idDriver" id="exampleFormControlSelect1">
                       <option selected disabled>Choose...</option>
                     <option value="1">Fifel Mouad</option>
                     <option value="2">Youssef Elmati</option>
                   </select>
+                  @error('idDriver')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Camion Type :</label>
-                  <select class="form-control" name="Camion_type" id="exampleFormControlSelect1">
+                  <select class="form-control @error('Camion_type') error-border @enderror" name="Camion_type" id="exampleFormControlSelect1">
                       <option selected disabled>Choose...</option>
                     <option value="Small">Small Truck</option>
                     <option value="Big">Big Truck</option>
                   </select>
+                  @error('Camion_type')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
                 </div>
   
                 <div class="form-group">
                  <label for="exampleFormControlSelect1">Camion capacity :</label> 
-                  <select class="form-control" name="Camion_capacity" id="exampleFormControlSelect1">
+                  <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
                       <option selected disabled>Choose...</option>
                     <option value="1">5</option>
                     <option value="2">10</option>
                   </select>
+                  @error('Camion_capacity')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
                 </div>
                 
                
   
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Location :</label>
-              <input type="text" name="Camion_location" class="form-control" id="recipient-name">
+              <input type="text" name="Camion_location" class="form-control @error('Camion_location') error-border @enderror" id="recipient-name">
+              @error('Camion_location')
+                <div class="error">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
   
             <div class="form-check form-check-inline">
