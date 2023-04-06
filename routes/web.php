@@ -32,5 +32,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
+// camion
 Route::resource('camions',CamionController::class)->middleware('auth');
 Route::get('/camions/edit/{camion}', [CamionController::class, 'getCamionById']);

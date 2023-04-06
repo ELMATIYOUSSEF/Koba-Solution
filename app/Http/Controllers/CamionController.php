@@ -18,7 +18,7 @@ class CamionController extends Controller
         $camions = Camion::select('camions.*', 'users.name as driver_name')
                     ->leftJoin('users', 'users.id', '=', 'camions.idDriver')
                     ->orderBy('camions.id', 'desc')
-                    ->paginate(10);
+                    ->paginate(4);
     
         return view('camions.show', ['camions' => $camions]);
     }

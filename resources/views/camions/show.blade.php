@@ -99,7 +99,7 @@
                                                         </a>                                                        
                                                         
                                                     </td>
-                                                    <form method="POST" action="{{route('camions.destroy',[$camion])}}" id="camion{{$camion->id}}">
+                                                    <form method="POST" action="{{route('camions.destroy',[$camion->id])}}" id="camion{{$camion->id}}">
                                                         @csrf 
                                                         @method('DELETE')
                                                     </form>

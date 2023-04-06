@@ -13,12 +13,12 @@ class PermissionType
     const GESTIONPROFIL = 'gestion Profil';
 
 
-     // declare all permission for command 
-     const EDITPRODUIT = 'edit command';
-     const DELETEPRODUIT = 'delete command';
-     const VIEWPRODUIT = 'view command';
-     const CREATEPRODUIT = 'create command';
-     const GESTIONCOMMAND = 'gestion Command';
+     // declare all permission for order 
+     const EDITORDER = 'edit oredr';
+     const DELETEORDER = 'delete oredr';
+     const VIEWORDER = 'view oredr';
+     const CREATEORDER = 'create oredr';
+     const GESTIONORDER = 'gestion order';
 
 
     // declare all permission for camoin 
@@ -28,9 +28,12 @@ class PermissionType
     const CREATECAMION = 'create camoin';
     const GESTIONCAMION = 'gestion camion';
 
-    // declare all permission for camoin 
+    // declare all permission for FeedBack 
     const GESTIONFEEDBACK = 'gestionFeedBAck';
-    const VIEWFEEDBACK = 'View FeedBAck';
+    const VIEWFEEDBACK = 'view FeedBAck';
+    const CREATEFEEDBACK = 'create FeedBAck';
+    const DELETEFEEDBACK = 'delete FeedBAck';
+    const EDITFEEDBACK = 'edit FeedBAck';
     
     // declare All Permission for Consomation
     const EDITCONSOMATION = 'edit consomation';
