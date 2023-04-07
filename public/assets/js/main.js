@@ -17,6 +17,57 @@ function openModal(camionId) {
     });
 }
 
+//  change status for camion 
+$(document).ready(function () {
+    console.log('hi');
+   
+    $('.camion-switch').click(function () {
+        let numunavailable ='';
+        let numavailable ='';
+           numavailable = parseInt( document.getElementById('numavailable').innerText ); 
+           numunavailable = parseInt( document.getElementById('numunavailable').innerText); 
+        var camionId = $(this).attr('id').replace('customSwitches', '');
+        var isChecked = $(this).is(':checked');
+        var status = isChecked ? 'available' : 'unavailable';
+
+        console.log(camionId);
+        console.log(status);
+        let data ={
+            'id':camionId,
+            'status':status,
+        }
+        // update the status 
+        $.ajax({
+            url: 'camions/changestatus',
+            type: "POST",
+            data,
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                console.log(response);
+                if( response.bol){
+                    console.log('zid f ava');
+                    document.getElementById('numavailable').innerText = numavailable + 1 ;
+                    document.getElementById('numunavailable').innerText = numunavailable - 1 ;
+                    console.log('nqas f unva');
+                }
+                if( response.bol == false) {
+                    console.log('zid f unva');
+                    document.getElementById('numavailable').innerText = numavailable - 1 ;
+                    document.getElementById('numunavailable').innerText = numunavailable + 1 ;
+                    console.log('nqas f ava');
+                }
+            },
+            error: function (xhr) {
+              console.error(xhr.responseText);
+                // console.log('hi form error');
+            }
+        });
+    });
+});
+
+
 // remove alert of success
   function removeAlert() {
     setTimeout(function() {

@@ -6,8 +6,8 @@
                 {{-- <h3 class="page-title mt-3">Welcome   {{ Auth::user()->name }} </h3> --}}
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">FeedBack</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Show All FeedBacks :</li>
+                      <li class="breadcrumb-item"><a href="#">Customer</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Show All Customers :</li>
                     </ol>
                   </nav>
             </div>
@@ -18,11 +18,15 @@
             <div class="card-body">
                 <div class="dash-widget-header">
                     <div>
-                        <h3 class="card_widget_header">{{$feedbacks->count()}}</h3>
-                        <h6 class="text-muted">feedbacks</h6> </div>
+                        <h3 class="card_widget_header">{{$Customers->count()}}</h3>
+                        <h6 class="text-muted">Customers</h6> </div>
                     <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6eed6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>    
-                    </span> </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#6eed6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                            </svg>                    </span> </div>
                 </div>
             </div>
         </div>
@@ -41,7 +45,7 @@
                         </script>
                 @endif
                 
-                    <h4 class="card-title float-left mt-2">All FeedBacks </h4>
+                    <h4 class="card-title float-left mt-2">All Customers </h4>
                 </div>
                 @php
                 $count =0 ;   
@@ -55,36 +59,41 @@
                                         <tr>
                                             <th>#</th>
                                             <th>user Name</th>
-                                            <th> DateTimeFeedback</th>
-                                            <th>TypeFeedback</th>
-                                            <th class="text-center">FeedbackMessage</th>
+                                            <th> email</th>
+                                            <th>Role</th>
                                             <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @if($feedbacks->isEmpty())
+                                        @if($Customers->isEmpty())
                                             <div class="col-md-12">
                                                 <div class="alert alert-info text-center" role="alert">
-                                                    There are no feedbacks available.
+                                                    There are no Customers available.
                                                 </div>
                                             </div>
                                         @else
                                            
-                                            @foreach($feedbacks as $feedback)
+                                            @foreach($Customers as $Customer)
                                                 @php
                                                 $count++ ;   
                                                  @endphp
                                                 <tr>
                                                     <td class="text-center">{{$count}}</td>
                                                     <td class="text-nowrap">
-                                                        {{ $feedback->user_name }}
+                                                        {{ $Customer->name }}
                                                     </td>
-                                                    <td class="text-nowrap">{{$feedback->DateTimeFeedback}}</td>
-                                                    <td class="text-nowrap">{{$feedback->TypeFeedback}}</td>
-                                                    <td>{{$feedback->FeedbackMessage}}</td>                                                                                         <td>
-                                                        
-                                                        <a href="javascript:void(0)" onclick="if(confirm('Are You sure to delete this feedbacks?')){document.getElementById('feedback{{$feedback->id}}').submit();} else {return false}" class="">
+                                                    <td class="text-nowrap">{{$Customer->email}}</td>
+                                                    <td>
+                                                        @foreach ($Customer->roles as $role)
+                                                            {{ $role->name }}
+                                                            @if (!$loop->last)
+                                                                ,
+                                                            @endif
+                                                        @endforeach
+                                                    </td>                                                                                   
+                                                       <td class="text-center">
+                                                        <a href="javascript:void(0)" onclick="if(confirm('Are You sure to delete this Customers?')){document.getElementById('Customer{{$Customer->id}}').submit();} else {return false}" class="">
                                                             <lord-icon
                                                                 src="https://cdn.lordicon.com/kfzfxczd.json"
                                                                 trigger="hover"
@@ -94,7 +103,7 @@
                                                         </a>                                                    
                                                         
                                                     </td>
-                                                    <form method="POST" action="{{route('feedbacks.destroy',[$feedback->id])}}" id="feedback{{$feedback->id}}">
+                                                    <form method="POST" action="{{route('Customers.destroy',[$Customer->id])}}" id="Customer{{$Customer->id}}">
                                                         @csrf 
                                                         @method('DELETE')
                                                     </form>
@@ -105,7 +114,7 @@
                                     
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {!! $feedbacks->links() !!}
+                                    {!! $Customers->links() !!}
                                 </div>
                                
                             </div>
@@ -114,5 +123,6 @@
                     </div>
                 </div>
             </div>
+            
      
  @include('../dashboard.footer')

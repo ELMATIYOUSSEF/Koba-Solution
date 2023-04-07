@@ -13,6 +13,52 @@
             </div>
         </div>
     </div>
+    @php
+    $available = 0;
+    $unavailable = 0;
+@endphp
+
+@foreach ($camions as $camion)
+    @if ($camion->Camion_status == 'available')
+        @php
+            $available++;
+        @endphp
+        @else
+        @php
+            $unavailable++;
+        @endphp
+    @endif
+@endforeach
+    <div class="d-flex flex flex-wrap">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card board1 fill">
+            <div class="card-body">
+                <div class="dash-widget-header">
+                    <div>
+                        <h3 class="card_widget_header" id="numavailable">{{$available}}</h3>
+                        <h6 class="text-muted">Available Camion</h6> </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6eed6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6eed6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></svg>	
+                    </span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card board1 fill">
+            <div class="card-body">
+                <div class="dash-widget-header">
+                    <div>
+                        <h3 class="card_widget_header" id="numunavailable">{{$unavailable}}</h3>
+                        <h6 class="text-muted">unavailable Camion</h6> </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e16f6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e16f6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></svg>	
+                    </span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="row">
         <div class="col-md-12 d-flex">
             <div class="card card-table flex-fill">
@@ -42,8 +88,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Driver Name</th>
-                                            <th> Camion Type</th>
-                                            <th>Camion Capacity</th>
+                                            <th class="text-center"> Camion Type</th>
+                                            <th class="text-center">Camion Capacity</th>
                                             <th class="text-center">Camion Location</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Actions</th>
@@ -68,22 +114,19 @@
                                                     <td class="text-nowrap">
                                                         {{ $camion->driver_name }}
                                                     </td>
-                                                    <td class="text-nowrap">{{$camion->Camion_type}}</td>
-                                                    <td class="text-nowrap">{{$camion->Camion_capacity}}</td>
-                                                    <td>{{$camion->Camion_location}}</td>
-                                                    <td class="text-center">
-                                                        <button class="btn"
-                                                            @if ($camion->Camion_status == 'available')
-                                                                style="background-color: rgb(110, 237, 110); color: white;"
-                                                            @elseif ($camion->Camion_status == 'unavailable')
-                                                                style="background-color: rgb(225, 111, 111); color: white;"
-                                                            @else
-                                                                style="background-color: gray; color: white;"
-                                                            @endif
-                                                        >
-                                                           
-                                                        </button>
-                                                    </td>                                                                                                        <td>
+                                                    <td class="text-center">{{$camion->Camion_type}}</td>
+                                                    <td class="text-center">{{$camion->Camion_capacity}}</td>
+                                                    <td class="text-center">{{$camion->Camion_location}}</td>
+                                                        <td >
+                                                            <div class="custom-control custom-switch  ">
+                                                                <input type="checkbox" class="custom-control-input camion-switch" id="customSwitches{{$camion->id}}" 
+                                                                    @if ($camion->Camion_status == 'available') 
+                                                                        checked 
+                                                                    @endif>
+                                                                <label class="custom-control-label" for="customSwitches{{$camion->id}}"></label>
+                                                            </div>
+                                                        </td>                                                                                                   
+                                                        <td class="text-center">
                                                         
                                                         <a href="javascript:void(0)" onclick="if(confirm('Are You sure to delete this camion?')){document.getElementById('camion{{$camion->id}}').submit();} else {return false}" class="">
                                                             <lord-icon
@@ -121,13 +164,18 @@
                
                 <div>
                     <div>
-                        <button class="btn" style="background-color: rgb(110, 237, 110); color: white;">
-                    </button>
+                        
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitches" checked disabled>
+                        <label class="custom-control-label" for="customSwitches"></label>
+                    </div>
                     <h6>available</h6>
                     </div>
                     <div>
-                        <button class="btn" style="background-color: rgb(225, 111, 111); color: white;">
-                    </button>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitches"  disabled>
+                            <label class="custom-control-label" for="customSwitches"></label>
+                        </div>
                     <h6>unavailable</h6>
                     </div>
 
@@ -154,8 +202,9 @@
                 <label for="exampleFormControlSelect1">Driver select :</label>
                 <select class="form-control @error('idDriver') error-border @enderror" name="idDriver" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
-                  <option value="1">Fifel Mouad</option>
-                  <option value="2">Youssef Elmati</option>
+                    @foreach($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
                 </select>
                 @error('idDriver')
                 <div class="error">
@@ -181,8 +230,10 @@
                <label for="exampleFormControlSelect1">Camion capacity :</label> 
                 <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
-                  <option value="1">5</option>
-                  <option value="2">10</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
                 </select>
                 @error('Camion_capacity')
                 <div class="error">
@@ -216,6 +267,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
+
         </form>
       </div>
       
@@ -235,16 +287,17 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" id="form" action="{{route('camions.update',[$camion])}}">
+          <form method="POST" id="form" action="{{ isset($camion) ? route('camions.update', [$camion]) : route('camions.store') }}">
                 {{ csrf_field() }}
                 @method('PUT')
                 <input type="hidden" name="idcamion">
               <div class="form-group">
                   <label for="exampleFormControlSelect1">Driver select :</label>
                   <select class="form-control @error('idDriver') error-border @enderror" name="idDriver" id="exampleFormControlSelect1">
-                      <option selected disabled>Choose...</option>
-                    <option value="1">Fifel Mouad</option>
-                    <option value="2">Youssef Elmati</option>
+                    <option selected disabled>Choose...</option>
+                    @foreach($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
                   </select>
                   @error('idDriver')
                 <div class="error">

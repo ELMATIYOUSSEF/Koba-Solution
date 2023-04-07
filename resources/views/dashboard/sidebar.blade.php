@@ -7,8 +7,7 @@
                 
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="all-customer.html"> All customers </a></li>
-                        <li><a href="add-customer.html"> Add Customer </a></li>
+                        <li><a href="{{route('Customers.index')}}"> All customers </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-hand-holding"></i> <span> Camion </span> <span class="menu-arrow"></span></a>
@@ -18,8 +17,7 @@
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-comments"></i> <span> FeedBack </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="">All FeedBack </a></li>
-                        <li><a href=""> Add FeedBack </a></li>
+                        <li><a href="{{route('feedbacks.index')}}">All FeedBack </a></li>
                     </ul>
                 </li>
                 <li> <a href="pricing.html"><i class="far fa-money-bill-alt"></i> <span>consumption</span></a> </li>

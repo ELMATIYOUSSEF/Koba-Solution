@@ -15,7 +15,13 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        //
+         
+        $feedback = FeedBack::select('feed_backs.*', 'users.name as user_name')
+                    ->leftJoin('users', 'users.id', '=', 'feed_backs.IdCustomer')
+                    ->orderBy('feed_backs.id', 'desc')
+                    ->paginate(4);
+
+        return view('feedbacks.show',['feedbacks'=>$feedback]);
     }
 
     /**
@@ -81,6 +87,9 @@ class FeedBackController extends Controller
      */
     public function destroy(FeedBack $feedBack)
     {
-        //
+        $feedBack-> delete();
+        return redirect()
+        ->back()
+        ->with('success', 'feedBack has been deleted !!');
     }
 }

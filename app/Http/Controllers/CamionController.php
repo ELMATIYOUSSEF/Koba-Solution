@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Camion;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreCamionRequest;
 use App\Http\Requests\UpdateCamionRequest;
 
@@ -15,12 +18,13 @@ class CamionController extends Controller
      */
     public function index()
     {
+        $drivers = Role::where('name', 'driver')->first()->users()->get();
         $camions = Camion::select('camions.*', 'users.name as driver_name')
                     ->leftJoin('users', 'users.id', '=', 'camions.idDriver')
                     ->orderBy('camions.id', 'desc')
                     ->paginate(4);
     
-        return view('camions.show', ['camions' => $camions]);
+        return view('camions.show', ['camions' => $camions ,'users'=>$drivers]);
     }
     
 
@@ -110,5 +114,17 @@ class CamionController extends Controller
         return redirect()
         ->back()
         ->with('success', 'camion has been deleted !!');
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $camionId = $request->id;
+        $status = $request->status;
+        ($status=='available')?$bol = true : $bol =false ;
+        $camion = Camion::find($camionId);
+        $camion->Camion_status = $status;
+        $camion->save();
+    
+        return response()->json(['success' => true , 'bol'=>$bol]);
     }
 }

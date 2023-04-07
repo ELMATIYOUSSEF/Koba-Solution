@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CamionController;
+use App\Http\Controllers\FeedBackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,13 @@ Route::middleware([
 // camion
 Route::resource('camions',CamionController::class)->middleware('auth');
 Route::get('/camions/edit/{camion}', [CamionController::class, 'getCamionById']);
+Route::post('camions/changestatus', [CamionController::class, 'updateStatus'])->name('changestatus');
+
+
+
+// feedback
+Route::resource('feedbacks',FeedBackController::class)->middleware('auth');
+
+
+//Customers
+Route::resource('Customers',AuthController::class)->middleware('auth');
