@@ -16,6 +16,24 @@ function openModal(camionId) {
         }
     });
 }
+function changeRole(ClientId , role) {
+    let checkadmin = document.getElementById('adminRadio');
+    let userId = document.getElementById('userId');
+    let checkclient = document.getElementById('clinetRadio');
+    let checkdriver = document.getElementById('driverRadio');
+    userId.value=ClientId;
+    console.log(ClientId , role)
+    if(role=='client'){
+        checkclient.setAttribute('checked', 'checked');
+    }
+    if(role=='admin'){
+        checkadmin.setAttribute('checked', 'checked');
+    }
+    if(role=='driver'){
+        checkdriver.setAttribute('checked', 'checked');
+    }
+
+}
 
 //  change status for camion 
 $(document).ready(function () {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoleRequest;
 
 class AuthController extends Controller
 {
@@ -88,4 +89,16 @@ class AuthController extends Controller
         ->back()
         ->with('success', 'user has been deleted !!');
     }
+    public function changeRole(StoreRoleRequest $request){
+        
+        $id= $request->input('userId');
+    
+         $user = User::findOrFail($id);
+        $user->syncRoles($request->input('role_ids')); 
+
+        return redirect()
+        ->back()
+        ->with('success', 'camion is submitted!');
+    }
+
 }

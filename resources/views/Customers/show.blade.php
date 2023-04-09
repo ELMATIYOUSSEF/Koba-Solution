@@ -86,7 +86,8 @@
                                                     <td class="text-nowrap">{{$Customer->email}}</td>
                                                     <td>
                                                         @foreach ($Customer->roles as $role)
-                                                            {{ $role->name }}
+                                                        {{-- <button type="button" class="btn btn-primary" data-whatever="@getbootstrap">Admin @getbootstrap</button> --}}
+                                                           <button type="button" class="btn btn-info change" onclick="changeRole({{$Customer->id}},'{{$role->name}}')" data-toggle="modal" data-target="#editRoleModal">{{ strtoupper($role->name) }}</button> 
                                                             @if (!$loop->last)
                                                                 ,
                                                             @endif
@@ -123,6 +124,47 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="modal fade" id="editRoleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content w-100">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Change Role</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <form method="POST" action="{{route('changeRole') }}">
+                        {{ csrf_field() }}
+                        @method('POST')
+                        <input type="hidden" name="userId" id="userId" value="">
+                        <label for="changeRole">Select Role</label> <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="role_ids" id="adminRadio" value="3">
+                            <label class="form-check-label" for="inlineRadio1">Admin</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="role_ids" id="clinetRadio" value="1">
+                            <label class="form-check-label" for="inlineRadio2">CLinet</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="role_ids" id="driverRadio" value="2">
+                            <label class="form-check-label" for="inlineRadio3">Driver</label>
+                          </div>
+                       <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" id="saveBtn" class="btn btn-primary">Save</button>
+                    </div>
+                      </form>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+
+            
             
      
  @include('../dashboard.footer')

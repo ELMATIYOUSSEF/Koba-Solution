@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CamionController;
 use App\Http\Controllers\FeedBackController;
 
@@ -20,19 +21,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    Route::get('/homepage', function () {
+        return view('welcome');
+    });
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
 });
+
 
 // camion
 Route::resource('camions',CamionController::class)->middleware('auth');
@@ -47,3 +48,10 @@ Route::resource('feedbacks',FeedBackController::class)->middleware('auth');
 
 //Customers
 Route::resource('Customers',AuthController::class)->middleware('auth');
+
+// change role
+
+Route::middleware(['role:admin'])->group(function(){
+    Route::post('/changeRole', [AuthController::class,'changeRole'])->name('changeRole');
+    Route::resource('/roles', RoleController::class);
+});
