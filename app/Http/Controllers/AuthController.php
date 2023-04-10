@@ -98,7 +98,7 @@ class AuthController extends Controller
 
         return redirect()
         ->back()
-        ->with('success', 'camion is submitted!');
+        ->with('success', 'Role is changed !');
     }
 
 }

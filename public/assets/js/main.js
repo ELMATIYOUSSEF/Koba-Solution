@@ -38,7 +38,6 @@ function changeRole(ClientId , role) {
 //  change status for camion 
 $(document).ready(function () {
     console.log('hi');
-   
     $('.camion-switch').click(function () {
         let numunavailable ='';
         let numavailable ='';

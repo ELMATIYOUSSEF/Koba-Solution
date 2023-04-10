@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CamionController;
 use App\Http\Controllers\FeedBackController;
 
@@ -55,3 +56,6 @@ Route::middleware(['role:admin'])->group(function(){
     Route::post('/changeRole', [AuthController::class,'changeRole'])->name('changeRole');
     Route::resource('/roles', RoleController::class);
 });
+
+// checkoutPage
+ Route::get('/checkoutPage',[OrderController::class,'create']);
