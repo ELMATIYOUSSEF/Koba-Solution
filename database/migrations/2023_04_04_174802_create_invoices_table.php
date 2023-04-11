@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Idorder');
+            $table->unsignedBigInteger('order_id');
             $table->dateTime('DateSale');
             $table->float('QuantityWater');
             $table->float('PriceWater');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->float('TotalMount');
             $table->timestamps();
 
-            $table->foreign('Idorder')
+            $table->foreign('order_id')
                   ->references('id')
                   ->on('orders')
                   ->onDelete('cascade');

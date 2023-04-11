@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('IdCustomer');
+            $table->unsignedBigInteger('user_id');
             $table->dateTime('DateTimeOrder');
             $table->integer('quantityWater');
             $table->string('location');
             $table->enum('StatusOrder', ['pending', 'in progress', 'delivered']);
             $table->timestamps();
 
-            $table->foreign('IdCustomer')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

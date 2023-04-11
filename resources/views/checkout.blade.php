@@ -13,6 +13,7 @@
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   </head>
   <body>
     <header class="edu-header disable-transparent bg-dark header-sticky  ">
@@ -79,7 +80,17 @@
           />
         </div>
         <div class="rightside">
-          <form action="">
+          @includeWhen($errors->any(),'../_errors')
+          @if (session('success'))
+          <div id="flash-success" class="flash-success">
+              {{ session('success') }}
+          </div>
+              <script>
+                 removeAlert(); 
+              </script>
+      @endif
+          <form action="{{route('orders.store')}}" method="POST">
+            @csrf 
             <h1>CheckOut</h1>
             <h2>Payment Information</h2>
             @php
@@ -87,22 +98,22 @@
             @endphp
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Date Time :</label>
-                <input type="date" class="form-control" value="{{$ldate}}" disabled id="exampleFormControlInput1" placeholder="Quantity">
+                <input type="text" name="DateTimeOrder" class="form-control" value="{{$ldate}}" disabled id="exampleFormControlInput1" >
               </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Quantity Water (L) :</label>
-                <input type="number" min="100" class="form-control" id="exampleFormControlInput1" placeholder="Quantity">
+                <input type="number" min="100" class="form-control" name="quantityWater" id="exampleFormControlInput1" placeholder="Quantity">
               </div>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Your Location " aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-primary" type="button" id="button-addon2">add address </button>
+                <input type="text" class="form-control" name="location" placeholder="Your Location " aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-primary"  type="button" id="button-addon2">add address </button>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="satatusorder" checked disabled name="Camion_status" id="inlineRadio2" value="option2">
+                <input class="form-check-input" type="radio" value="pending" checked disabled name="StatusOrder" id="inlineRadio2" >
                 <label class="form-check-label" for="inlineRadio2">Satatus Order (Pending)</label>
               </div>
             <p></p>
-            <button type="submit" class="button">CheckOut</button>
+            <button type="submit" class="button">ORDER NOW</button>
           </form>
         </div>
       </div>
@@ -195,6 +206,7 @@
         },
       });
     </script>
+    <script src="assets/js/main.js"></script>
     
       </body>
 </html>

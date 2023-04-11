@@ -102,3 +102,21 @@ $(document).ready(function () {
   window.addEventListener('load', function() {
     removeAlert();
   });
+
+  function changeStatusOrder( idOrder, status ){
+    let pendingRadio = document.getElementById('pendingRadio');
+    let orderId = document.getElementById('orderId');
+    let progressRadio = document.getElementById('progressRadio');
+    let deliveredRadio = document.getElementById('deliveredRadio');
+    orderId.value = idOrder ;
+    if(status=='pending'){
+        pendingRadio.setAttribute('checked', 'checked');
+    }
+    if(status=='progress'){
+        progressRadio.setAttribute('checked', 'checked');
+    }
+    if(status=='delivered'){
+        deliveredRadio.setAttribute('checked', 'checked');
+    }
+
+  }

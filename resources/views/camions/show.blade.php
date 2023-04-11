@@ -65,13 +65,13 @@
                 <div class="card-header">
                     @includeWhen($errors->any(),'../_errors')
                     @if (session('success'))
-                    <div id="flash-success" class="flash-success">
-                        {{ session('success') }}
-                    </div>
-                        <script>
-                           removeAlert(); 
-                        </script>
-                @endif
+                      <div id="flash-success" class="flash-success">
+                          {{ session('success') }}
+                      </div>
+                          <script>
+                            removeAlert(); 
+                          </script>
+                    @endif
                 
                     <h4 class="card-title float-left mt-2">All camions </h4>
                     <button type="button" class="btn btn-primary  float-right veiwbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add camion</button>
@@ -89,7 +89,7 @@
                                             <th>#</th>
                                             <th>Driver Name</th>
                                             <th class="text-center"> Camion Type</th>
-                                            <th class="text-center">Camion Capacity</th>
+                                            <th class="text-center">Camion Capacity (tonne)</th>
                                             <th class="text-center">Camion Location</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Actions</th>
@@ -227,13 +227,13 @@
               </div>
 
               <div class="form-group">
-               <label for="exampleFormControlSelect1">Camion capacity :</label> 
+               <label for="exampleFormControlSelect1">Camion capacity (tonne):</label> 
                 <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
                     <option selected disabled>Choose...</option>
-                  <option value="05">05</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
+                  <option value=05>05</option>
+                  <option value=10>10</option>
+                  <option value=15>15</option>
+                  <option value=20>20</option>
                 </select>
                 @error('Camion_capacity')
                 <div class="error">
@@ -320,11 +320,13 @@
                 </div>
   
                 <div class="form-group">
-                 <label for="exampleFormControlSelect1">Camion capacity :</label> 
+                 <label for="exampleFormControlSelect1">Camion capacity (tonne):</label> 
                   <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
                       <option selected disabled>Choose...</option>
-                    <option value="1">5</option>
-                    <option value="2">10</option>
+                      <option value=05>05</option>
+                      <option value=10>10</option>
+                      <option value=15>15</option>
+                      <option value=20>20</option>
                   </select>
                   @error('Camion_capacity')
                 <div class="error">

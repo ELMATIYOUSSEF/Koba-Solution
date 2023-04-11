@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('regulations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Idorder');
+            $table->unsignedBigInteger('order_id');
             $table->dateTime('DateTimePayment');
             $table->string('PaymentMethod');
             $table->float('AmountPaid');
             $table->string('StatusPayment')->default('pending');
             $table->timestamps();
 
-            $table->foreign('Idorder')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
      
         });
     }

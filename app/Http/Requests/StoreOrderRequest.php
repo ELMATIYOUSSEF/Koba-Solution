@@ -13,7 +13,8 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+        
     }
 
     /**
@@ -24,7 +25,11 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'quantityWater' => 'required|integer',
+            'location' => 'required|string',
+            'StatusOrder' =>'string|in:pending',
+            'DateTimeOrder' =>'date'
         ];
+        
     }
 }

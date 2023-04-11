@@ -54,8 +54,12 @@ Route::resource('Customers',AuthController::class)->middleware('auth');
 
 Route::middleware(['role:admin'])->group(function(){
     Route::post('/changeRole', [AuthController::class,'changeRole'])->name('changeRole');
+    Route::post('/changeSatatusOrder', [OrderController::class,'changeSatatusOrder'])->name('changeSatatusOrder');
     Route::resource('/roles', RoleController::class);
 });
 
 // checkoutPage
  Route::get('/checkoutPage',[OrderController::class,'create']);
+
+// ORDER
+Route::resource('orders',OrderController::class);

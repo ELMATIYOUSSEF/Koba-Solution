@@ -171,7 +171,7 @@
                     <div class="col-10 col-sm-8 col-lg-6  test" id="imgTruck">
                       <div class="loader rotate"></div>
                       <div class="imgTruck">
-                        <img   src="assets/img/truck.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="Water Bottles" width="700" height="500" loading="lazy"></div>
+                        <img class="rounded-circle"  src="assets/img/truck.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="Water Bottles" width="700" height="500" loading="lazy"></div>
                     </div>
                     <div class="col-lg-6">
                         <h1 class="display-5 fw-bold lh-1 mb-3">Stay Hydrated with Our Premium Water Selection</h1>

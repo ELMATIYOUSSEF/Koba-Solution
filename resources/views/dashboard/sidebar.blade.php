@@ -43,7 +43,7 @@
                 </li>
                 <li class="submenu"> <a href="#"><i class="fab fa-first-order"></i> <span> Orders </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="employees.html">All Orders </a></li>
+                        <li><a href="{{route('orders.index')}}">All Orders </a></li>
                         <li><a href="leaves.html">Leaves </a></li>
                         <li><a href="holidays.html">Holidays </a></li>
                         <li><a href="attendance.html">Attendance </a></li>
