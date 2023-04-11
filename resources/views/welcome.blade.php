@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Home Page</title>
+    <title>Home Page </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -27,15 +27,16 @@
                 </div>
             </div>
             <div class="col-lg-8 d-none d-xl-block">
-                <nav class=" d-none d-lg-block">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
-                        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                    </ul>
-                </nav>
+              <nav class="d-none d-lg-block">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
+                  <li><a href="/" class="nav-link px-2 text-white {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
+                  <li><a href="/checkout" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
+                  <li><a href="/contact" class="nav-link px-2 text-white {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
+                  <li><a href="/feedbacks" class="nav-link px-2 text-white {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a></li>
+                  <li><a href="/about" class="nav-link px-2 text-white {{ request()->is('about') ? 'active' : '' }}">About</a></li>
+                </ul>
+              </nav>
+              
             </div>
             <div class="col-lg-6 col-xl-2 col-md-6 col-6">
                 <div class="header-right d-flex justify-content-end">
@@ -88,7 +89,7 @@
                     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
                   </div>
               </div>
-              <div class="swiper-slide" id="mySwiper">
+              <div class="swiper-slide" id="swiper-color">
                 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center " id="swiper-color">
                     <div class="col-md-5 p-lg-5 mx-auto my-5 text-center" >
                       <h1 class="display-4 fw-normal">Welcome to Our Solution to the Water Problem!                        !</h1>
@@ -103,69 +104,74 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
           </div>
-
-          <div class=" col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-              <div class="col-10 col-sm-8 col-lg-6">
-                <img src="assets/img/map-and-navigation.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-              </div>
-              <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Find Safe Drinking Water Now - Check the Map or Truck Location</h1>
-                <p class="lead">we believe that the best long-term solution is to provide access to safe drinking water through our website's interactive map. By utilizing the available water sources in your area, you can reduce the need for truck delivery and ensure that you have a sustainable supply of water</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                  <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Find Water Now!</button>
-                </div>
-              </div>
-            </div>
-          </div>
           {{--  --}}
+         
+          
+<div class="header">
 
-          <div class="bg-dark px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom text-white">"Experience the Best of Morocco with Our Premium Services"
-            </h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-              <div class="feature col">
-                <div class="feature-icon">
-                    <i class="bi bi-people" style="width:1em "></i>
+  <!--Content before waves-->
+  <div class="inner-header flex">
+  <!--Just the logo.. Don't mind this-->
+  <svg version="1.1" class="logo" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" xml:space="preserve">
+  <path fill="#FFFFFF" stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M57,283" />
+  
+  </svg>
+  <h1>"Take Control of Your Water Supply: Find Safe Drinking Water with Ease"</h1>
+  </div>
+  
+  <!--Waves Container-->
+  <div>
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+  <defs>
+  <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+  </defs>
+  <g class="parallax">
+  <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+  <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+  <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+  <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+  </g>
+  </svg>
+  </div>
+  <!--Waves end-->
+  
+  </div>
+
+          {{--  --}}
+          <section class="py-4">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-3 bg-soft-danger rounded-3">
+                    <div class="row g-0 align-items-center">
+                      <div class="col-md-5 col-lg-6 text-md-center"><img class="img-fluid" src="assets/img/about.png" alt="" /></div>
+                      <div class="col-md-7 col-lg-6 px-md-2 px-xl-6 text-center text-md-start">
+                        <div class="card-body px-4 py-5 p-lg-3 p-md-4">
+                          <h1 class="mb-4 fw-bold">Find Safe Drinking Water Now <br class="d-md-none d-xxl-block" /> Check the Map or Truck Location</h1>
+                          <p class="card-text">we believe that the best long-term solution is to provide access to safe drinking water through our website's interactive map. By utilizing the available water sources in your area, you can reduce the need for truck delivery and ensure that you have a sustainable supply of water</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 class="text-white">Product Quality</h2>
-                <p class="text-white">Our goal is to satisfy the customer, and you can check the product before payment.</p>
-                <a href="#" class="icon-link  text-white btn btn-primary">
-                    Read More
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-                </a>
-              </div>
-              <div class="feature col">
-                <div class="feature-icon">
-                    <i class="bi bi-person-check"></i>
-                </div>
-                <h2 class="text-white">Free Delivery</h2>
-                <p class="text-white">Fast and free delivery all over Morocco.</p>
-                <a href="#" class="icon-link text-white btn btn-primary">
-                    Read More
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-                </a>
-              </div>
-              <div class="feature col">
-                <div class="feature-icon">
-                    <i class="bi bi-person-fill"></i>
-                </div>
-                <h2 class="text-white">Customer Service</h2>
-                <p class="text-white">Our goal is always to satisfy the customer. If you encounter any problems, please do not hesitate to contact us.</p>
-                <a href="#" class="icon-link text-white btn btn-primary">
-                    Read More
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-                </a>
               </div>
             </div>
-          </div>
+            <!-- end of .container-->
+          </section>
+        
 
+       
         {{-- section Produit  --}}
         <section>
             <div class="col-xxl-8 px-4 py-5">
                 <div class="row flex-lg-row align-items-center g-5 py-5">
-                    <div class="col-10 col-sm-8 col-lg-6">
-                        <img src="assets/img/truck.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="Water Bottles" width="700" height="500" loading="lazy">
+                    <div class="col-10 col-sm-8 col-lg-6  test" id="imgTruck">
+                      <div class="loader rotate"></div>
+                      <div class="imgTruck">
+                        <img   src="assets/img/truck.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="Water Bottles" width="700" height="500" loading="lazy"></div>
                     </div>
                     <div class="col-lg-6">
                         <h1 class="display-5 fw-bold lh-1 mb-3">Stay Hydrated with Our Premium Water Selection</h1>
