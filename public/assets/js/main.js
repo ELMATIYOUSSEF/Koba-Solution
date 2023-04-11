@@ -64,16 +64,12 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if( response.bol){
-                    console.log('zid f ava');
                     document.getElementById('numavailable').innerText = numavailable + 1 ;
                     document.getElementById('numunavailable').innerText = numunavailable - 1 ;
-                    console.log('nqas f unva');
                 }
                 if( response.bol == false) {
-                    console.log('zid f unva');
                     document.getElementById('numavailable').innerText = numavailable - 1 ;
                     document.getElementById('numunavailable').innerText = numunavailable + 1 ;
-                    console.log('nqas f ava');
                 }
             },
             error: function (xhr) {

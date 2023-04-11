@@ -30,7 +30,7 @@
               <nav class="d-none d-lg-block">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
                   <li><a href="/" class="nav-link px-2 text-white {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                  <li><a href="/checkout" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
+                  <li><a href="/checkoutPage" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
                   <li><a href="/contact" class="nav-link px-2 text-white {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
                   <li><a href="/feedbacks" class="nav-link px-2 text-white {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a></li>
                   <li><a href="/about" class="nav-link px-2 text-white {{ request()->is('about') ? 'active' : '' }}">About</a></li>
@@ -54,14 +54,14 @@
                                 <ul class="dropdown-menu">
                                 @guest
                                   <li><a type="button" href="{{ route('login') }}" class="dropdown-item">Login</a></li>
-                                  <li><a type="button" class="dropdown-item">Sign-up</a></li>
+                                  <li><a type="button" href="{{ route('register') }}" class="dropdown-item">Sign-up</a></li>
                                 @endguest
                                 @auth
                                 @role('admin')
                                     <li><a type="button" href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a></li>
                                 @endrole
-                                <li><a type="button" href="#" class="dropdown-item">My Profile</a></li>
-                                <li><a type="button" href="#" class="dropdown-item">Log out</a></li>
+                                <li><a type="button" href="{{ route('profile.show') }}" class="dropdown-item">My Profile</a></li>
+                                <li><a type="button" href="{{ route('logout') }}" class="dropdown-item">Log out</a></li>
                                 @endauth                            
                                 </ul>
                               </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Home Page</title>
+    <title>checkout Page </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -13,9 +13,9 @@
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   </head>
   <body>
+    
     <header class="edu-header disable-transparent bg-dark header-sticky  ">
         <div class="container">
             <div class="row align-items-center">
@@ -27,15 +27,16 @@
                 </div>
             </div>
             <div class="col-lg-8 d-none d-xl-block">
-                <nav class=" d-none d-lg-block">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
-                        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                    </ul>
-                </nav>
+              <nav class="d-none d-lg-block">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
+                  <li><a href="/" class="nav-link px-2 text-white {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
+                  <li><a href="/checkoutPage" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
+                  <li><a href="/contact" class="nav-link px-2 text-white {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
+                  <li><a href="/feedbacks" class="nav-link px-2 text-white {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a></li>
+                  <li><a href="/about" class="nav-link px-2 text-white {{ request()->is('about') ? 'active' : '' }}">About</a></li>
+                </ul>
+              </nav>
+              
             </div>
             <div class="col-lg-6 col-xl-2 col-md-6 col-6">
                 <div class="header-right d-flex justify-content-end">
@@ -52,14 +53,16 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                 @guest
-                                  <li><a type="button" class="dropdown-item">Login</a></li>
-                                  <li><a type="button" class="dropdown-item">Sign-up</a></li>
+                                  <li><a type="button" href="{{ route('login') }}" class="dropdown-item">Login</a></li>
+                                  <li><a type="button" href="{{ route('register') }}" class="dropdown-item">Sign-up</a></li>
                                 @endguest
                                 @auth
-                                  <li><a type="button" class="dropdown-item">Dashboard</a></li>
-                                  <li><a type="button" class="dropdown-item">My Profil</a></li>
-                                  <li><a type="button" class="dropdown-item">Log out</a></li>
-                                @endauth
+                                @role('admin')
+                                    <li><a type="button" href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a></li>
+                                @endrole
+                                <li><a type="button" href="{{ route('profile.show') }}" class="dropdown-item">My Profile</a></li>
+                                <li><a type="button" href="{{ route('logout') }}" class="dropdown-item">Log out</a></li>
+                                @endauth                            
                                 </ul>
                               </div>
                             </div>
