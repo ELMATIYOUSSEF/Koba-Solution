@@ -111,13 +111,13 @@
                                                  @endphp
                                                 <tr>
                                                     <td class="text-center">{{$count}}</td>
-                                                    <td class="text-nowrap">
+                                                    <td >
                                                         {{ $camion->users->name }}
                                                     </td>
                                                     <td class="text-center">{{$camion->camionType->Camion_type }}</td>
                                                     <td class="text-center">{{$camion->camionType->Camion_capacity}}</td>
                                                     <td class="text-center">{{$camion->Camion_location}}</td>
-                                                        <td >
+                                                        <td class="text-center" >
                                                             <div class="custom-control custom-switch  ">
                                                                 <input type="checkbox" class="custom-control-input camion-switch" id="customSwitches{{$camion->id}}" 
                                                                     @if ($camion->Camion_status == 'available') 
@@ -275,48 +275,34 @@
                 {{ csrf_field() }}
                 @method('PUT')
                 <input type="hidden" name="idcamion">
-              <div class="form-group">
+                <div class="form-group">
                   <label for="exampleFormControlSelect1">Driver select :</label>
                   <select class="form-control @error('idDriver') error-border @enderror" name="idDriver" id="exampleFormControlSelect1">
-                    <option selected disabled>Choose...</option>
-                    @foreach($users as $user)
-                    <option value="{{$user->id}}">{{$user->name}}</option>
-                    @endforeach
+                      <option selected disabled>Choose...</option>
+                      @foreach($users as $user)
+                      <option value="{{$user->id}}">{{$user->name}}</option>
+                      @endforeach
                   </select>
                   @error('idDriver')
-                <div class="error">
-                  {{ $message }}
-                </div>
-              @enderror
+                  <div class="error">
+                    {{ $message }}
+                  </div>
+                @enderror
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Camion Type :</label>
-                  <select class="form-control @error('Camion_type') error-border @enderror" name="Camion_type" id="exampleFormControlSelect1">
+                  <select class="form-control @error('camion_type_id') error-border @enderror" name="camion_type_id" id="exampleFormControlSelect1">
                       <option selected disabled>Choose...</option>
-                    <option value="Small">Small Truck</option>
-                    <option value="Big">Big Truck</option>
+                    <@foreach($camionTypes as $camionType)
+                    <option value="{{$camionType->id }}">{{$camionType->Camion_type }}</option>
+                    @endforeach
                   </select>
-                  @error('Camion_type')
-                <div class="error">
-                  {{ $message }}
-                </div>
-              @enderror
-                </div>
-  
-                <div class="form-group">
-                 <label for="exampleFormControlSelect1">Camion capacity (tonne):</label> 
-                  <select class="form-control @error('Camion_capacity') error-border @enderror" name="Camion_capacity" id="exampleFormControlSelect1">
-                      <option selected disabled>Choose...</option>
-                      <option value=1000>1000</option>
-                      <option value=2000>2000</option>
-                      <option value=5000>5000</option>
-                  </select>
-                  @error('Camion_capacity')
-                <div class="error">
-                  {{ $message }}
-                </div>
-              @enderror
-                </div>
+                  @error('camion_type_id')
+                  <div class="error">
+                    {{ $message }}
+                  </div>
+                @enderror
+                </div>              
                 
                
   

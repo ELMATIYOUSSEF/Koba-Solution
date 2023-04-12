@@ -26,8 +26,7 @@ class UpdateCamionRequest extends FormRequest
         return [
             'idcamion'=> 'required|integer',
             'idDriver' => 'required|integer',
-            'Camion_type'=>'required|string|max:30',
-            'Camion_capacity'=>'required|integer',
+            'camion_type_id'=>'required|integer',
             'Camion_location'=>'required|string|max:255',
             'Camion_status'=>'required|string|in:available,unavailable',
         ];
