@@ -48,7 +48,7 @@
                     <h4 class="card-title float-left mt-2">All Customers </h4>
                 </div>
                 @php
-                $count =0 ;   
+                 $count =0 ;   
                @endphp
     
       

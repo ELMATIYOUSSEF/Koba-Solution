@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-PkAJhCUv/gJ1QWlnE24yykP7Z9aZEh/30fJG1zF/Ya7yB1Jl8tCwTtLrBt+gsbJvwhq3LPoEdsK/Mx+QzLIOyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

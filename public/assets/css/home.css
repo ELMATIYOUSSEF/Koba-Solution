@@ -41,6 +41,9 @@
     overflow-x: hidden;
     overflow-y: auto;
     }
+    .icon-bar {
+      background-color:#ffffff !important;
+   }
 
     footer {
     position: relative;

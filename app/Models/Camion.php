@@ -11,13 +11,16 @@ class Camion extends Model
 
     protected $fillable = [
         'idDriver',
-        'Camion_type',
-        'Camion_capacity',
         'Camion_location',
-        'Camion_status'
+        'Camion_status',
+        'camion_type_id'
     ];
     public function users()
     {
         return $this->belongsTo(User::class, 'idDriver');
+    }
+    public function camionType()
+    {
+        return $this->belongsTo(CamionType::class);
     }
 }

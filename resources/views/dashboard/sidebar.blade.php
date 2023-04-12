@@ -22,10 +22,15 @@
                 </li>
                 
                
+                <li class="submenu"> <a href="#"><i class="fab fa-first-order"></i> <span> Orders </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        <li><a href="{{route('orders.index')}}">All Orders </a></li>
+                    </ul>
+                </li>
+                
                 <li class="submenu"> <a href="#"><i class="fas fa-money-check-alt"></i><span> Reglement </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="invoices.html">Invoices </a></li>
-                        <li><a href="payments.html">Add Reglement </a></li>
                         <li><a href="expenses.html">All Reglement </a></li>
                     </ul>
                 </li>
@@ -41,16 +46,8 @@
                         <li><a href="invoice-reports.html">Invoice Report </a></li>
                     </ul>
                 </li>
-                <li class="submenu"> <a href="#"><i class="fab fa-first-order"></i> <span> Orders </span> <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{route('orders.index')}}">All Orders </a></li>
-                        <li><a href="leaves.html">Leaves </a></li>
-                        <li><a href="holidays.html">Holidays </a></li>
-                        <li><a href="attendance.html">Attendance </a></li>
-                    </ul>
-                </li>
                 <li> <a href="pricing.html"><i class="far fa-money-bill-alt"></i> <span>consumption</span></a> </li>
-                <li> <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                <li> <a href="{{route('settings.index')}}"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
               
             </ul>
         </div>
