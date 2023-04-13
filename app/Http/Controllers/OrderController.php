@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Camion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        
         $user = Auth::user();
         $orders = $user->orders()->with('user')->orderBy('id', 'DESC')->paginate(10);
         return view('orders.show',['orders'=>$orders]);
@@ -31,8 +33,16 @@ class OrderController extends Controller
      */
     public function create()
     {
-         return view('checkout');
-    }
+        $camions = Camion::join('users', 'camions.idDriver', '=', 'users.id')
+        ->join('camion_types', 'camions.camion_type_id', '=', 'camion_types.id')
+        ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->where('roles.name', 'driver')
+        ->where('camions.Camion_status', 'available')
+        ->where('camion_types.Camion_capacity', '>', 100)
+        ->select('camions.*', 'camion_types.Camion_capacity', 'users.*', 'users.name')
+        ->get();
+        return view('checkout',['camions'=>$camions]);    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,10 +56,10 @@ class OrderController extends Controller
         
         $user = Auth::user();
         $validated = $request->validated();
-        $validated['DateTimeOrder'] = date('Y-m-d');
+        $validated['DateTimeOrder'] = date('Y-m-d H:i:s');
         $validated['StatusOrder'] = 'pending';
         $order = $user->orders()->create($validated);
-        return redirect()->back()->with('success', 'Order is submitted!');
+        return view('thankyou')->with('success', 'Order is submitted!');
 
     }
 

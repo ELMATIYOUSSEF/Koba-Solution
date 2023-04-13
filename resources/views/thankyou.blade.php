@@ -13,66 +13,10 @@
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   </head>
   <body>
     
-    <header class="edu-header disable-transparent bg-dark header-sticky  ">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-xl-2 col-md-6 col-6">
-                    <div class="logo">
-                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                            <span class="navbar-brand" style="color: black" href="?"><img style="width :5rem" src="assets/img/logo.png" alt="logo"></span>
-                        </a>
-                </div>
-            </div>
-            <div class="col-lg-8 d-none d-xl-block">
-              <nav class="d-none d-lg-block">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
-                  <li><a href="/" class="nav-link px-2 text-white {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                  <li><a href="/checkoutPage" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
-                  <li><a href="/contact" class="nav-link px-2 text-white {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
-                  <li><a href="/feedbacks" class="nav-link px-2 text-white {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a></li>
-                  <li><a href="/about" class="nav-link px-2 text-white {{ request()->is('about') ? 'active' : '' }}">About</a></li>
-                </ul>
-              </nav>
-              
-            </div>
-            <div class="col-lg-6 col-xl-2 col-md-6 col-6">
-                <div class="header-right d-flex justify-content-end">
-                    <div class="header-quote">
-                        <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
-                            <div class="btn-group">
-                                <button class="btn btn-primary rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @auth
-                                  Welcome {{Auth::user()->name}}
-                                  @endauth
-                                  @guest
-                                  Get Started
-                                  @endguest
-                                </button>
-                                <ul class="dropdown-menu">
-                                @guest
-                                  <li><a type="button" href="{{ route('login') }}" class="dropdown-item">Login</a></li>
-                                  <li><a type="button" href="{{ route('register') }}" class="dropdown-item">Sign-up</a></li>
-                                @endguest
-                                @auth
-                                @role('admin')
-                                    <li><a type="button" href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a></li>
-                                @endrole
-                                <li><a type="button" href="{{ route('profile.show') }}" class="dropdown-item">My Profile</a></li>
-                                <li><a type="button" href="{{ route('logout') }}" class="dropdown-item">Log out</a></li>
-                                @endauth                            
-                                </ul>
-                              </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+   
 
 <div class="mainscreen">
       <div class="card">
@@ -90,62 +34,18 @@
           <div id="flash-success" class="flash-success">
               {{ session('success') }}
           </div>
-              <script>
-                 removeAlert(); 
-              </script>
            @endif
-          <form action="{{route('orders.store')}}" method="POST">
-            @csrf 
-            <h1>CheckOut</h1>
-            <h2>Payment Information</h2>
-            @php
-            $ldate = date('Y-m-d H:i:s');
-            @endphp
-           
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Date Time :</label>
-                <input type="text" name="DateTimeOrder" class="form-control" value="{{$ldate}}" disabled id="exampleFormControlInput1" >
-              </div>
-              <input type="hidden" name="capacityWAter" id="capacityinput">
-              <input type="hidden" name="NameDriver" id="nameinput">
-              @if(isset($camions))
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Driver Name :</label>
-                <select class="form-control @error('idcamion') error-border @enderror" name="idcamion" id="exampleFormControlSelect1">
-                  <option selected disabled>Choose...</option>
-                  @foreach($camions as $camion)
-                  <option value="{{$camion->id}}" data-name="{{$camion->name}}" data-capacity="{{$camion->Camion_capacity}}">{{$camion->name}}</option>
-                  @endforeach
-                </select>
-                @error('idcamion')
-                <div class="error">
-                  {{ $message }}
-                </div>
-                @enderror
-              </div>
-              <p id="capacity-info">Camion Capacity: </p>
-            @endif
-
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Quantity Water (L) :</label>
-                <input type="number" min="100" class="form-control" name="quantityWater" id="exampleFormControlInput1" placeholder="Quantity">
-              </div>
-             
-            
-
-              <label for="location" class="form-label">Your Location :</label> 
-              <div class="input-group mb-3">
-                
-                <input type="text" class="form-control" id="location" name="location" placeholder="Your Location " aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-primary"  type="button" id="button-addon2">add address </button>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="pending" checked disabled name="StatusOrder" id="inlineRadio2" >
-                <label class="form-check-label" for="inlineRadio2">Satatus Order (Pending)</label>
-              </div>
-            <p></p>
-            <button type="submit" class="button">ORDER NOW</button>
-          </form>
+           <div class=" text-center">
+            <h1 class="display-3">Thank You!</h1>
+            <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
+            <hr>
+            <p>
+              Having trouble? <a href="#">Contact us</a>
+            </p>
+            <p class="lead">
+              <a class="btn btn-primary btn-sm" href="#" role="button">Continue to homepage</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

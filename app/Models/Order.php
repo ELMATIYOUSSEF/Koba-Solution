@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'idcamion',
         'DateTimeOrder',
         'quantityWater',
         'location',

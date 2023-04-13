@@ -25,6 +25,8 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
+            'capacityWAter' =>'required|integer',
+            'idcamion'=>'required|integer',
             'quantityWater' => 'required|integer',
             'location' => 'required|string',
             'StatusOrder' =>'string|in:pending',

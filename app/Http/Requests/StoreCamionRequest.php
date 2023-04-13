@@ -24,7 +24,7 @@ class StoreCamionRequest extends FormRequest
     public function rules()
     {
         return [
-            'idDriver' => 'required|integer',
+            'idDriver' => 'required|integer|unique:camions',
             'camion_type_id'=>'required|integer',
             'Camion_location'=>'required|string|max:255',
             'Camion_status'=>'required|string|in:available,unavailable',
