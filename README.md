@@ -18,7 +18,6 @@
   <p>Technologies et plateformes utilisées :</p>
   <ul>
     <li>Laravel</li>
-    <li>Vue.js</li>
     <li>HTML5</li>
     <li>CSS3</li>
     <li>Bootstrap</li>
