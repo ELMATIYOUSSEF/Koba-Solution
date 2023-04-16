@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Order;
 use App\Models\Camion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -40,9 +43,10 @@ class OrderController extends Controller
         ->where('roles.name', 'driver')
         ->where('camions.Camion_status', 'available')
         ->where('camion_types.Camion_capacity', '>', 100)
-        ->select('camions.*', 'camion_types.Camion_capacity', 'users.*', 'users.name')
+        ->select('camions.*', 'camion_types.Camion_capacity', 'users.*', 'users.name','camion_types.id as IdcamionType','camions.id as cmId')
         ->get();
-        return view('checkout',['camions'=>$camions]);    }
+        return view('checkout',['camions'=>$camions]);    
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -53,14 +57,34 @@ class OrderController extends Controller
     
     public function store(StoreOrderRequest $request)
     {
-        
+        $camiontypeid = $request->idcamion;
+        $capacity = DB::select('SELECT Capacity_disponible FROM camions WHERE id = ? LIMIT 1', [$camiontypeid]);
+        $quantityWater = $request->quantityWater;
         $user = Auth::user();
-        $validated = $request->validated();
-        $validated['DateTimeOrder'] = date('Y-m-d H:i:s');
-        $validated['StatusOrder'] = 'pending';
-        $order = $user->orders()->create($validated);
-        return view('thankyou')->with('success', 'Order is submitted!');
+        $validated = $request->validate([ 'quantityWater' => 'numeric|min:1|max:'.$capacity[0]->Capacity_disponible,]);
 
+        try {
+
+            $validated['idcamion'] = $request->idcamion;
+            $validated['location'] = $request->location;
+            $validated['DateTimeOrder'] = date('Y-m-d H:i:s');
+            $validated['StatusOrder'] = 'pending'; 
+            //  update capacity of camion 
+            $totalRest = $capacity[0]->Capacity_disponible - $quantityWater ;
+            DB::table('camions')
+                ->where('id', $request->idcamion)
+                ->update(['Capacity_disponible' => $totalRest]);
+            // create Order 
+           
+            $order = $user->orders()->create($validated);
+           
+    
+            return view('thankyou')->with('success', 'Order is submitted!');
+
+        } catch (Exception $ex) {
+            Log::error($ex->getMessage());
+        }
+      
     }
 
     /**

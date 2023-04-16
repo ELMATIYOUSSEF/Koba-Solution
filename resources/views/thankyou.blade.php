@@ -37,14 +37,40 @@
            @endif
            <div class=" text-center">
             <h1 class="display-3">Thank You!</h1>
-            <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
+            <p class="lead"><strong>Thank you for using Koba </strong>to help find a digital solution to water problems.</p>
             <hr>
-            <p>
-              Having trouble? <a href="#">Contact us</a>
-            </p>
-            <p class="lead">
-              <a class="btn btn-primary btn-sm" href="#" role="button">Continue to homepage</a>
-            </p>
+            
+              <h3>Please enter your feedback</h3>
+              <form action="{{route('feedbacks.store')}}" method="POST">
+                @csrf
+                <div class="mb-3 text-start">
+                  <label for="type" class="form-label">TypeFeedback :</label>
+                  <select class="form-control @error('TypeFeedback') error-border @enderror" name="TypeFeedback" id="type">
+                    <option selected>Select a type</option>
+                    <option value="complaint">Complaint</option>
+                    <option value="suggestion">Suggestion</option>
+                    <option value="praise">Praise</option>
+                  </select>
+                  @error('TypeFeedback')
+                  <div class="error">
+                    {{ $message }}
+                  </div>
+                @enderror
+                </div>
+                <div class="mb-3 text-start">
+                  <label for="feedback" class="form-label">FeedbackMessage :</label>
+                  <textarea class="form-control @error('FeedbackMessage') error-border @enderror" name="FeedbackMessage"  id="feedback" rows="3"></textarea>
+                  @error('FeedbackMessage')
+                  <div class="error">
+                    {{ $message }}
+                  </div>
+                @enderror
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              
+            
           </div>
         </div>
       </div>
@@ -126,29 +152,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-HaL+6boT1dN80Kj+2nxDEpvTcH6uYSJ6n1Yn6iE9cljKkjqwV8n9zzgNlsZPdj7E" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     
-    <!-- Initialize Swiper -->
-    <script>
-       const selectElement = document.getElementById('exampleFormControlSelect1');
-        const capacityInfoElement = document.getElementById('capacity-info');
-        const capacityinput = document.getElementById('capacityinput');
-        const nameinput = document.getElementById('nameinput');
-        selectElement.addEventListener('change', function(event) {
-          const selectedOption = event.target.selectedOptions[0];
-          const selectedCamionCapacity = selectedOption.dataset.capacity;
-          const selectedCamionname = selectedOption.dataset.name;
-          capacityInfoElement.textContent = `Camion Capacity: ${selectedCamionCapacity}`;
-          capacityinput.value =selectedCamionCapacity ;
-          nameinput.value =selectedCamionname ;
-        });
-      var swiper = new Swiper(".mySwiper", {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    </script>
     <script src="assets/js/main.js"></script>
       </body>
 </html>

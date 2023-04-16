@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('feed_backs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('IdCustomer');
+            $table->unsignedBigInteger('user_id');
             $table->dateTime('DateTimeFeedback');
             $table->string('TypeFeedback');
             $table->text('FeedbackMessage');
             $table->timestamps();
 
-            $table->foreign('IdCustomer')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

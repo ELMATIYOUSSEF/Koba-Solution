@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\CamionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FeedBackController;
@@ -65,6 +66,9 @@ Route::middleware(['role:admin'])->group(function(){
 
 // ORDER
 Route::resource('orders',OrderController::class);
+
+// Price
+Route::resource('prices',PriceController::class)->only('update');
 
 // Settings
 Route::resource('settings',SettingController::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FeedBack;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreFeedBackRequest;
 use App\Http\Requests\UpdateFeedBackRequest;
 
@@ -17,7 +18,7 @@ class FeedBackController extends Controller
     {
          
         $feedback = FeedBack::select('feed_backs.*', 'users.name as user_name')
-                    ->leftJoin('users', 'users.id', '=', 'feed_backs.IdCustomer')
+                    ->leftJoin('users', 'users.id', '=', 'feed_backs.user_id')
                     ->orderBy('feed_backs.id', 'desc')
                     ->paginate(4);
 
@@ -42,7 +43,11 @@ class FeedBackController extends Controller
      */
     public function store(StoreFeedBackRequest $request)
     {
-        //
+        $user = Auth::user();
+        $data = $request->validated();
+        $data['DateTimeFeedback']= date('Y-m-d H:i:s');
+        $user->feedbacks()->create($data);
+        return view('welcome'); 
     }
 
     /**

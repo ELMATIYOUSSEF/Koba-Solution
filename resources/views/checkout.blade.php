@@ -91,8 +91,16 @@
               {{ session('success') }}
           </div>
               <script>
-                 removeAlert(); 
+                removeAlert(); 
               </script>
+           @endif
+          @if (session('error'))
+          <div class="flash-error">
+              {{ session('error') }}
+          </div>
+              {{-- <script>
+                removeAlert(); 
+              </script> --}}
            @endif
           <form action="{{route('orders.store')}}" method="POST">
             @csrf 
@@ -106,18 +114,18 @@
                 <label for="exampleFormControlInput1" class="form-label">Date Time :</label>
                 <input type="text" name="DateTimeOrder" class="form-control" value="{{$ldate}}" disabled id="exampleFormControlInput1" >
               </div>
-              <input type="hidden" name="capacityWAter" id="capacityinput">
+              <input type="hidden" name="idcamion" id="idcamioninput">
               <input type="hidden" name="NameDriver" id="nameinput">
               @if(isset($camions))
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Driver Name :</label>
-                <select class="form-control @error('idcamion') error-border @enderror" name="idcamion" id="exampleFormControlSelect1">
+                <select class="form-control @error('idcamionType') error-border @enderror" name="idcamionType" id="exampleFormControlSelect1" >
                   <option selected disabled>Choose...</option>
                   @foreach($camions as $camion)
-                  <option value="{{$camion->id}}" data-name="{{$camion->name}}" data-capacity="{{$camion->Camion_capacity}}">{{$camion->name}}</option>
+                  <option value={{$camion->IdcamionType}} data-name="{{$camion->name}}" data-tamonit="{{$camion->cmId}}" data-capacity="{{$camion->Capacity_disponible}}">{{$camion->name}}</option>
                   @endforeach
                 </select>
-                @error('idcamion')
+                @error('idcamionType')
                 <div class="error">
                   {{ $message }}
                 </div>
@@ -232,14 +240,15 @@
     <script>
        const selectElement = document.getElementById('exampleFormControlSelect1');
         const capacityInfoElement = document.getElementById('capacity-info');
-        const capacityinput = document.getElementById('capacityinput');
+        const idcamioninput = document.getElementById('idcamioninput');
         const nameinput = document.getElementById('nameinput');
         selectElement.addEventListener('change', function(event) {
           const selectedOption = event.target.selectedOptions[0];
           const selectedCamionCapacity = selectedOption.dataset.capacity;
+          const selectedCamionid = selectedOption.dataset.tamonit;
           const selectedCamionname = selectedOption.dataset.name;
           capacityInfoElement.textContent = `Camion Capacity: ${selectedCamionCapacity}`;
-          capacityinput.value =selectedCamionCapacity ;
+          idcamioninput.value =selectedCamionid ;
           nameinput.value =selectedCamionname ;
         });
       var swiper = new Swiper(".mySwiper", {

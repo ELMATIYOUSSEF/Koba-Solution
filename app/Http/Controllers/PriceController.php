@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Camion;
-use App\Models\CamionType;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Price;
+use App\Http\Requests\StorePriceRequest;
+use App\Http\Requests\UpdatePriceRequest;
 
-
-class SettingController extends Controller
+class PriceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $price = DB::select('SELECT * FROM prices WHERE id = ? LIMIT 1', [1]);
-        // dd($price);
-        $camion = CamionType::all();
-        return view('settings.show',['camions'=>$camion , 'prices'=>$price]);
+        //
     }
 
     /**
@@ -30,16 +25,16 @@ class SettingController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePriceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePriceRequest $request)
     {
         //
     }
@@ -47,22 +42,21 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Price $price)
     {
-        $camion = CamionType::with('camionType')->find($id);
-        return view('settings.show',['camions'=>$camion]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Price $price)
     {
         //
     }
@@ -70,22 +64,26 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdatePriceRequest  $request
+     * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePriceRequest $request ,Price $price)
     {
-        //
+        
+        $price->amount = $request->input('amount'); 
+        $price->save();
+        return redirect()->back()->with('success', 'Price updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Price $price)
     {
         //
     }

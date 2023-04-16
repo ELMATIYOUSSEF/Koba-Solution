@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idDriver');
             $table->string('Camion_location');
             $table->string('Camion_status');
+            $table->integer('Capacity_disponible')->default(0); 
             $table->unsignedBigInteger('camion_type_id');
             $table->timestamps();
 

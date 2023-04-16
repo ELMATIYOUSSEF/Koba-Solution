@@ -15,6 +15,81 @@
     border-radius: 0;
 }
 </style>
+{{-- Price --}}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12 mt-5">
+                {{-- <h3 class="page-title mt-3">Welcome   {{ Auth::user()->name }} </h3> --}}
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Settings </a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Price Water Settings :</li>
+                    </ol>
+                  </nav>
+            </div>
+        </div>
+    </div>
+    
+
+<div class="container  w-100">
+    <div class="row w-100">
+        <div class=" col-12 col-sm-6 col-md-12  mb-3  w-100">
+            <div class="card">
+                <div class="card-body">
+                    @includeWhen($errors->any(),'../_errors')
+                    @if (session('success'))
+                    <div id="flash-success" class="flash-success">
+                        {{ session('success') }}
+                    </div>
+                        <script>
+                           removeAlert(); 
+                        </script>
+                    @endif
+
+                    <!-- Profile picture and short information -->
+                    <div class="d-flex align-items-center position-relative pb-3">
+                        <div class="flex-shrink-0">
+                            <img class="img-md rounded-circle" src="https://cdn-icons-png.flaticon.com/128/543/543135.png" alt="Profile Picture" loading="lazy">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <a href="#" class="h5 stretched-link btn-link">Water Price</a>
+                            <p class="text-muted m-3"> Price Manager</p>
+                        </div>
+                        <div>
+                            <h3>the Price of water now is : {{$prices[0]->amount}} MAD</h3>
+                        </div>
+                    </div>
+                <form action="{{route('prices.update',[$prices[0]->id])}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <p>"Amending Water Prices" </p>
+                    <div class="form-group  w-25">
+                        <label for="recipient-name" class="col-form-label">Water amount :</label>
+                        <input type="text" name="amount" class="form-control @error('amount') error-border @enderror" id="recipient-name">
+                        @error('amount')
+                            <div class="error">
+                              {{ $message }}
+                            </div>
+                          @enderror
+                      </div>
+                    <!-- END : Profile picture and short information -->
+
+                    <!-- Options buttons -->
+                    <div class="mt-3 pt-2 text-center border-top">
+                        <div class="d-flex justify-content-end gap-3">
+                            <button type="submit" href="#" class="btn btn-sm btn-info btn-outline-white btn-lg mx-1" >
+                                <i class="fa fa-plus-circle"></i> <span class="mx-1"> Save </span>  </button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+{{-- Camion --}}
 <div class="content container-fluid">
     <div class="page-header">
         <div class="row">

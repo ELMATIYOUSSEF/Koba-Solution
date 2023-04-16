@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class StoreCamionRequest extends FormRequest
 {
     /**
@@ -27,6 +28,7 @@ class StoreCamionRequest extends FormRequest
             'idDriver' => 'required|integer|unique:camions',
             'camion_type_id'=>'required|integer',
             'Camion_location'=>'required|string|max:255',
+            'Capacity_disponible'=>'integer',
             'Camion_status'=>'required|string|in:available,unavailable',
         ];
 

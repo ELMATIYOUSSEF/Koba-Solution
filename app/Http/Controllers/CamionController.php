@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Camion;
+use App\Models\CamionType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreCamionRequest;
 use App\Http\Requests\UpdateCamionRequest;
-use App\Models\CamionType;
 
 class CamionController extends Controller
 {
@@ -51,12 +52,18 @@ class CamionController extends Controller
      */
     public function store(StoreCamionRequest $request)
     {
-        $validated = $request->validated();
-        Camion::create($validated);
+        $data = $request->validated();
+        $camiontypeid = $request->camion_type_id;
+        $capacity = DB::select('SELECT Camion_capacity FROM camion_types WHERE id = ? LIMIT 1', [$camiontypeid]);
+        $capCamion =$capacity[0]->Camion_capacity;
+        $data['Capacity_disponible'] = $capCamion;
+         $camion =Camion::create($data);
+       
         return redirect()
             ->back()
             ->with('success', 'camion is submitted!');
     }
+
 
     public function getCamionById($id)
     {

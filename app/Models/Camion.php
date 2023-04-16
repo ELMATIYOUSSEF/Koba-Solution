@@ -13,6 +13,7 @@ class Camion extends Model
         'idDriver',
         'Camion_location',
         'Camion_status',
+        'Capacity_disponible',
         'camion_type_id'
     ];
     public function users()

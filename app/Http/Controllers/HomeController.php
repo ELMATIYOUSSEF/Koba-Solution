@@ -23,20 +23,20 @@ class HomeController extends Controller
 
         return view('checkout',['camions'=>$camions]);
     }
-     public function redirect()
-    {
-        if (Gate::allows('admin')) {
-            return view('dashboard.index');
-        }
+    //  public function redirect()
+    // {
+    //     if (Gate::allows('admin')) {
+    //         return view('dashboard.index');
+    //     }
     
-        if (Gate::allows('driver')) {
-            return view('dashboard.index');
-        }
+    //     if (Gate::allows('driver')) {
+    //         return view('dashboard.index');
+    //     }
     
-        if (Gate::allows('client')) {
-            return view('home');
-        }
+    //     if (Gate::allows('client')) {
+    //         return view('home');
+    //     }
 
-        return view('home');
-    }
+    //     return view('home');
+    // }
 }
