@@ -35,4 +35,6 @@
   </ul>
   <p>Calendrier et budget :</p>
   <p>Le projet sera découpé en différentes étapes, chacune avec un objectif spécifique et une date de livraison prévue.</p>
+  <h2> diagramme de classe  </h2>
+  <a href="https://lucid.app/lucidchart/f84de33d-a1e6-4d83-b884-2feb2bee30b5/edit?invitationId=inv_4ec4c9be-96a1-4b45-8ee7-3e46a0b1432c&page=0_0#" ></a>
 </div>
