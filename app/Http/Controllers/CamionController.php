@@ -8,6 +8,7 @@ use App\Models\CamionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCamionRequest;
 use App\Http\Requests\UpdateCamionRequest;
 
@@ -80,6 +81,7 @@ class CamionController extends Controller
      */
     public function show(Camion $camion)
     {
+        $camion = Camion::findOrFail($camion);
         return view('Camions.show',['camion' => $camion]);
     }
 
@@ -132,11 +134,28 @@ class CamionController extends Controller
     {
         $camionId = $request->id;
         $status = $request->status;
-        ($status=='available')?$bol = true : $bol =false ;
+        ($status=='available')? $bol = true : $bol =false ;
         $camion = Camion::find($camionId);
         $camion->Camion_status = $status;
         $camion->save();
     
         return response()->json(['success' => true , 'bol'=>$bol]);
+    }
+
+    public function getMycamion(){
+        $user = Auth::user();
+        $camions = Camion::where('idDriver', $user->id)->first();
+        //  dd($camions);
+        return view('camions.showMycamion', ['camions'=>$camions]);
+    }
+
+    public function getRemplire(Request $request){
+        $id = $request->id;
+        $camion = Camion::find($id);
+        $capacity = DB::select('SELECT Camion_capacity FROM camion_types WHERE id = ? LIMIT 1', [$camion->camion_type_id]);
+        $capCamion =$capacity[0]->Camion_capacity;
+        $camion->Capacity_disponible = $capCamion;
+        $camion->save();
+        return response()->json(['success' => true , 'capacity'=>$capCamion]);
     }
 }

@@ -37,7 +37,6 @@ function changeRole(ClientId , role) {
 
 //  change status for camion 
 $(document).ready(function () {
-    console.log('hi');
     $('.camion-switch').click(function () {
         let numunavailable ='';
         let numavailable ='';
@@ -79,6 +78,64 @@ $(document).ready(function () {
         });
     });
 });
+
+
+//  change status for mycamion 
+function SWITCH(id){
+    var isChecked = $(this).is(':checked');
+    var status = isChecked ? 'available' : 'unavailable';
+console.log(id , status );
+
+let data ={
+    'id':id,
+    'status':status,
+}
+// update the status for my camion 
+$.ajax({
+    url: 'camions/changestatus',
+    type: "POST",
+    data,
+    headers:{
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function (response) {
+        console.log(response);
+    },
+    error: function (xhr) {
+      console.error(xhr.responseText);
+    }
+});
+
+}
+
+
+
+// remplire my camion 
+function Remplire(id){
+
+    let data ={
+        'id':id
+    }
+   
+    $.ajax({
+        url: 'camions/Remplire',
+        type: "POST",
+        data,
+        headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            console.log(response);
+            if(response.success){
+                $('#Capacitydisponible').text(response.capacity);
+            }
+        },
+        error: function (xhr) {
+          console.error(xhr.responseText);
+        }
+    });
+
+}
 
 
 // remove alert of success

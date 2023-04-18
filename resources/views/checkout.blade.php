@@ -16,66 +16,53 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   </head>
   <body>
-    
-    <header class="edu-header disable-transparent bg-dark header-sticky  ">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-xl-2 col-md-6 col-6">
-                    <div class="logo">
-                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                            <span class="navbar-brand" style="color: black" href="?"><img style="width :5rem" src="assets/img/logo.png" alt="logo"></span>
-                        </a>
-                </div>
-            </div>
-            <div class="col-lg-8 d-none d-xl-block">
-              <nav class="d-none d-lg-block">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mx-5 mb-md-0">
-                  <li><a href="/" class="nav-link px-2 text-white {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                  <li><a href="/checkoutPage" class="nav-link px-2 text-white {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a></li>
-                  <li><a href="/contact" class="nav-link px-2 text-white {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
-                  <li><a href="/feedbacks" class="nav-link px-2 text-white {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a></li>
-                  <li><a href="/about" class="nav-link px-2 text-white {{ request()->is('about') ? 'active' : '' }}">About</a></li>
-                </ul>
-              </nav>
-              
-            </div>
-            <div class="col-lg-6 col-xl-2 col-md-6 col-6">
-                <div class="header-right d-flex justify-content-end">
-                    <div class="header-quote">
-                        <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
-                            <div class="btn-group">
-                                <button class="btn btn-primary rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @auth
-                                  Welcome {{Auth::user()->name}}
-                                  @endauth
-                                  @guest
-                                  Get Started
-                                  @endguest
-                                </button>
-                                <ul class="dropdown-menu">
-                                @guest
-                                  <li><a type="button" href="{{ route('login') }}" class="dropdown-item">Login</a></li>
-                                  <li><a type="button" href="{{ route('register') }}" class="dropdown-item">Sign-up</a></li>
-                                @endguest
-                                @auth
-                                @role('admin')
-                                    <li><a type="button" href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a></li>
-                                @endrole
-                                <li><a type="button" href="{{ route('profile.show') }}" class="dropdown-item">My Profile</a></li>
-                                <li><a type="button" href="{{ route('logout') }}" class="dropdown-item">Log out</a></li>
-                                @endauth                            
-                                </ul>
-                              </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
+      
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img style="width :5rem" src="assets/img/logo.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse d-lg-flex justify-content-lg-between align-items-center " id="navbarsExample04">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a  href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a  href="/checkoutPage" class="nav-link {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link  {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/feedbacks"  class="nav-link  {{ request()->is('feedbacks') ? 'active' : '' }}">FeedBacks</a>
+            </li>
+            
+          </ul>
+      <ul class="nav">
+          @guest
+          <li><a type="button" href="{{ route('login') }}" class="btn btn-outline-primary text-white">Login</a></li>
+          <li><a type="button" href="{{ route('register') }}" class="btn btn-warning">Sign-up</a></li>
+          @endguest
+          @auth
+          @role('admin')
+              <li><a type="button" href="{{ route('dashboard') }}" class="nav-item">Dashboard</a></li>
+          @endrole
+          <li><a type="button" href="{{ route('profile.show') }}" class="nav-item">My Profile</a></li>
+          <li>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="btn btn-danger" type="submit">Logout</button>
+        </form></li>
+          @endauth            
+      </ul>
         </div>
-    </div>
-</header>
+      </div>
+    </nav>
 
-<div class="mainscreen">
-      <div class="card">
+<div class="mainscreen p-5">
+      <div class="card p-3">
         <div class="leftside">
           <img
             src="assets/img/water.png"

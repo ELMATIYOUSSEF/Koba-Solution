@@ -111,7 +111,7 @@
   z-index: 4;
 }
 
-.loader::after {
+/* .loader::after {
   content: url(../img/pattern-1.png);
   position: absolute;
   top: -6rem;
@@ -131,7 +131,7 @@
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
-}
+} */
 
     .swiper {
       width: 100%;
