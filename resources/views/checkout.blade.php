@@ -49,6 +49,9 @@
           @role('admin')
               <li><a type="button" href="{{ route('dashboard') }}" class="nav-item">Dashboard</a></li>
           @endrole
+          @role('driver')
+              <li><a type="button" href="/Mycamion" class="nav-item">Dashboard</a></li>
+          @endrole
           <li><a type="button" href="{{ route('profile.show') }}" class="nav-item">My Profile</a></li>
           <li>
           <form action="{{ route('logout') }}" method="POST">
@@ -60,6 +63,7 @@
         </div>
       </div>
     </nav>
+  
 
 <div class="mainscreen p-5">
       <div class="card p-3">
